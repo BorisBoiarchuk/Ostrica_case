@@ -1,0 +1,6 @@
+fee_component,value
+commission_bps_notional,0.8
+exchange_fee_bps_notional,0.2
+sec_fee_bps_sell_notional,0.1
+financing_bps_annual_long_cash,80.0
+borrow_fee_bps_annual_short,use ticker_metadata_500tickers_v2.csv
