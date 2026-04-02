@@ -1,0 +1,38 @@
+dataset,check_name,severity,value,status,action
+intraday_prices,required_columns,error,0.0,PASS,Raise error if missing
+ticker_metadata,required_columns,error,0.0,PASS,Raise error if missing
+index_constituents,required_columns,error,0.0,PASS,Raise error if missing
+scheduled_events,required_columns,error,0.0,PASS,Raise error if missing
+fee_schedule,required_columns,error,0.0,PASS,Raise error if missing
+intraday_prices,null_timestamps,error,0.0,PASS,Raise error if > 0
+scheduled_events,null_timestamps,error,0.0,PASS,Raise error if > 0
+intraday_prices,row_count,info,978988.0,INFO,Informational
+intraday_prices,ticker_count,info,501.0,INFO,Informational
+ticker_metadata,ticker_count,info,500.0,INFO,Informational
+index_constituents,ticker_count,info,500.0,INFO,Informational
+scheduled_events,event_count,info,16.0,INFO,Informational
+intraday_prices,exact_duplicate_rows,warning,3434.0,WARN,Drop exact duplicates
+intraday_prices,"duplicate_(ticker,timestamp)_rows",warning,3496.0,WARN,Aggregate conflicting bars to one row per key
+intraday_prices,crossed_markets_(bid>ask),error,1250.0,FAIL,Drop crossed rows before backtest
+intraday_prices,locked_markets_(bid=ask),warning,1248.0,WARN,Keep but track
+intraday_prices,non_positive_bid,error,0.0,PASS,Raise error if > 0
+intraday_prices,non_positive_ask,error,0.0,PASS,Raise error if > 0
+intraday_prices,negative_volume_rows,error,0.0,PASS,"Drop if enabled, else raise"
+intraday_prices,"minute_outside_[0,389]",error,0.0,PASS,Raise error if > 0
+intraday_prices,date_timestamp_mismatch,error,0.0,PASS,Raise error if > 0
+ticker_metadata,duplicate_tickers,error,0.0,PASS,Raise error if > 0
+index_constituents,duplicate_tickers,error,0.0,PASS,Raise error if > 0
+fee_schedule,duplicate_fee_components,error,0.0,PASS,Raise error if > 0
+ticker_metadata,invalid_liquidity_score,error,0.0,PASS,Raise error if > 0
+ticker_metadata,non_positive_lot_size,error,0.0,PASS,Raise error if > 0
+ticker_metadata,non_positive_tick_size,error,0.0,PASS,Raise error if > 0
+ticker_metadata,invalid_max_participation_rate,error,0.0,PASS,Raise error if > 0
+ticker_metadata,negative_locate_limit,error,0.0,PASS,Raise error if > 0
+index_constituents,"weights_outside_[0,1]",error,0.0,PASS,Raise error if > 0
+index_constituents,weight_sum,warning,1.0,PASS,Raise or review if not ~1
+universe,stock_tickers_missing_from_metadata,error,0.0,PASS,Raise error if > 0
+universe,stock_tickers_missing_from_index_file,warning,0.0,PASS,Fill weight=0 or review
+universe,metadata_tickers_missing_from_intraday,info,0.0,INFO,Informational
+universe,index_tickers_missing_from_intraday,info,0.0,INFO,Informational
+fee_schedule,missing_required_fee_components,error,0.0,PASS,Raise error if > 0
+scheduled_events,events_outside_observed_intraday_clock,warning,0.0,PASS,Review event alignment
